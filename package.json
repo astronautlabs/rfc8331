@@ -15,7 +15,7 @@
     "smpte",
     "st291"
   ],
-  "author": "Astronaut Labs",
+  "author": "Astronaut Labs, LLC.",
   "license": "MIT",
   "dependencies": {
     "@astronautlabs/bitstream": "0.0.14"
