@@ -1,4 +1,5 @@
 import { BitstreamElement, Field } from "@astronautlabs/bitstream";
+import * as ST291 from '@astronautlabs/st291';
 
 export const ANC_MIMETYPE = 'video/smpte291';
 
@@ -146,16 +147,21 @@ export class AncillaryMessage extends BitstreamElement {
      * the even parity for bits b7 through b0, and bit b9 is the
      * inverse (logical NOT) of bit b8.
      */
-    @Field(2) dataCountParity : number;
-    @Field(0, { array: { countFieldLength: 8, type: Number, elementLength: 10 }}) 
-    userData : number[];
+    @Field(2) // TODO: autocalc
+    dataCountParity : number;
+
+    @Field(8)
+    dataCount : number;
+
+    @Field(i => i.dataCount, { serializer: new ST291.Serializer() }) 
+    userData : Buffer;
 
     @Field(10) checksum : number;
     @Field(i => 32 - (((i.userData.length * 10) - 2 + 10) % 32)) 
     wordAlign : number = 0;
 }
 
-export class AncillaryPacket extends BitstreamElement {
+export class RTPPacketHeader extends BitstreamElement {
     @Field(2) version : number;
     @Field(1) p : number;
     @Field(1) x : Number;
@@ -187,7 +193,9 @@ export class AncillaryPacket extends BitstreamElement {
      * field.
      */
     @Field(16) length : number;
+}
 
+export class AncillaryPacket extends BitstreamElement {
     @Field(8) ancCount : number = 0;
 
     /**
