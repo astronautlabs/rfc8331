@@ -150,10 +150,10 @@ export class AncillaryMessage extends BitstreamElement {
     @Field(2) // TODO: autocalc
     dataCountParity : number;
 
-    @Field(8)
+    @Field(8, { writtenValue: i => i.userData ? i.userData.length : 0 })
     dataCount : number;
 
-    @Field(i => i.dataCount, { serializer: new ST291.Serializer() }) 
+    @Field(i => i.dataCount ?? i.userData?.length, { serializer: new ST291.Serializer() }) 
     userData : Buffer;
 
     @Field(10) checksum : number;
