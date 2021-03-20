@@ -19,7 +19,7 @@
   "author": "Astronaut Labs, LLC.",
   "license": "MIT",
   "dependencies": {
-    "@astronautlabs/bitstream": "0.0.18",
+    "@astronautlabs/bitstream": "0.0.20",
     "@astronautlabs/st291": "0.0.1"
   },
   "repository": {
