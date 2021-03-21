@@ -153,8 +153,8 @@ export class AncillaryMessage extends BitstreamElement {
     @Field(8, { writtenValue: i => i.userData ? i.userData.length : 0 })
     dataCount : number;
 
-    @Field(i => i.dataCount ?? i.userData?.length, { serializer: new ST291.Serializer() }) 
-    userData : Buffer;
+    @Field()
+    userData : ST291.Packet;
 
     @Field(10) checksum : number;
     @Field(i => 32 - (((i.userData.length * 10) - 2 + 10) % 32)) 
