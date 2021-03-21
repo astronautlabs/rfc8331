@@ -134,7 +134,7 @@ export class AncillaryMessage extends BitstreamElement {
 
     @Marker() $packetEnd;
 
-    @Field(i => i.measure(i => i.$packetStart, i => i.$packetEnd) % 32)
+    @Field(i => 32 - (i.measure(i => i.$packetStart, i => i.$packetEnd) % 32))
     wordAlign : number = 0;
 }
 
