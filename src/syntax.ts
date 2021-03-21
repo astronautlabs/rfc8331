@@ -127,37 +127,12 @@ export class AncillaryMessage extends BitstreamElement {
      */
     @Field(7) streamNum : number;
 
-    /**
-     * Data identification word
-     */
-    @Field(10) did : number;
-
-    /**
-     * Secondary data identification word. Used only for a "Type 2"
-     * ANC data packet. Note that in a "Type 1" ANC data packet,
-     * this word will actually carry the data block number (DBN).
-     */
-    @Field(10) sdid : number;
-
-    /**
-     * The lower 8 bits of Data_Count, corresponding to bits b7
-     * (MSB; most significant bit) through b0 (LSB; least
-     * significant bit) of the 10-bit Data_Count word, contain the
-     * actual count of 10-bit words in User_Data_Words. Bit b8 is
-     * the even parity for bits b7 through b0, and bit b9 is the
-     * inverse (logical NOT) of bit b8.
-     */
-    @Field(2) // TODO: autocalc
-    dataCountParity : number;
-
-    @Field(8, { writtenValue: i => i.userData ? i.userData.length : 0 })
-    dataCount : number;
-
     @Field()
-    userData : ST291.Packet;
+    packet : ST291.Packet;
 
     @Field(10) checksum : number;
-    @Field(i => 32 - (((i.userData.length * 10) - 2 + 10) % 32)) 
+
+    @Field(i => i.measureTo(i => i.checksum) % 32)
     wordAlign : number = 0;
 }
 
