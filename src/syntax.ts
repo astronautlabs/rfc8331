@@ -127,7 +127,7 @@ export class AncillaryMessage extends BitstreamElement {
      */
     @Field(7) streamNum : number;
 
-    @Field()
+    @Field(0, { skip: ['ancillaryDataFlag']})
     packet : ST291.Packet;
 
     @Field(10) checksum : number;
