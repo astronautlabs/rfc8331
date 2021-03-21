@@ -173,7 +173,7 @@ export class RTPPacketHeader extends BitstreamElement {
 }
 
 export class AncillaryPacket extends BitstreamElement {
-    @Field(8) ancCount : number = 0;
+    @Field(8, { writtenValue: i => i.messages.length }) ancCount : number = 0;
 
     /**
      * These two bits relate to signaling the field specified by the
