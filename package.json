@@ -1,6 +1,6 @@
 {
   "name": "@astronautlabs/rfc8331",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Implementation of RFC 8331, RTP Payload for SMPTE ST 291-1 Ancillary Data",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
