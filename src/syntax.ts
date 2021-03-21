@@ -130,8 +130,6 @@ export class AncillaryMessage extends BitstreamElement {
     @Marker() $packetStart;
     @Field(0, { skip: ['ancillaryDataFlag']})
     packet : ST291.Packet;
-    @Field(10) checksum : number;
-
     @Marker() $packetEnd;
 
     @Field(i => 32 - (i.measure(i => i.$packetStart, i => i.$packetEnd) % 32))
