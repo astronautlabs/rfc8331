@@ -1,4 +1,4 @@
-import { BitstreamElement, Field } from "@astronautlabs/bitstream";
+import { BitstreamElement, Field, Marker } from "@astronautlabs/bitstream";
 import * as ST291 from '@astronautlabs/st291';
 
 export const ANC_MIMETYPE = 'video/smpte291';
@@ -127,12 +127,14 @@ export class AncillaryMessage extends BitstreamElement {
      */
     @Field(7) streamNum : number;
 
+    @Marker() $packetStart;
     @Field(0, { skip: ['ancillaryDataFlag']})
     packet : ST291.Packet;
-
     @Field(10) checksum : number;
 
-    @Field(i => i.measureTo(i => i.checksum) % 32)
+    @Marker() $packetEnd;
+
+    @Field(i => i.measure(i => i.$packetStart, i => i.$packetEnd) % 8)
     wordAlign : number = 0;
 }
 
