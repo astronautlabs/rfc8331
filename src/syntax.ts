@@ -136,40 +136,6 @@ export class AncillaryMessage extends BitstreamElement {
     wordAlign : number = 0;
 }
 
-export class RTPPacketHeader extends BitstreamElement {
-    @Field(2) version : number;
-    @Field(1) p : number;
-    @Field(1) x : Number;
-    @Field(4) cc : number;
-
-    /**
-     * The marker bit set to "1" indicates the last ANC data RTP packet
-     * for a frame (for progressive scan video) or the last ANC data RTP
-     * packet for a field (for interlaced video).
-     */
-    @Field(1) marker : number;
-    @Field(7) pt : number;
-    @Field(16) sequenceNumber : number;
-    @Field(32) timestamp : number;
-    @Field(32) ssrc : number;
-
-    /**
-     * The high-order bits of the extended 32-bit sequence number,
-     * in network byte order. This is the same as the Extended
-     * Sequence Number field in RFC 4175 [RFC4175].
-     */
-    @Field(16) extendedSequenceNumber : number;
-
-    /**
-     * Number of octets of the ANC data RTP payload, beginning with
-     * the "C" bit of the first ANC packet data header, as an
-     * unsigned integer in network byte order. Note that all
-     * word_align fields contribute to the calculation of the Length
-     * field.
-     */
-    @Field(16) length : number;
-}
-
 export class AncillaryPacket extends BitstreamElement {
     @Field(8, { writtenValue: i => i.messages.length }) ancCount : number = 0;
 
@@ -217,4 +183,38 @@ export class AncillaryPacket extends BitstreamElement {
      */
     @Field(0, { array: { count: i => i.ancCount, type: AncillaryMessage } })
     messages : AncillaryMessage[];
+}
+
+export class RTPPacketHeader extends BitstreamElement {
+    @Field(2) version : number;
+    @Field(1) p : number;
+    @Field(1) x : Number;
+    @Field(4) cc : number;
+
+    /**
+     * The marker bit set to "1" indicates the last ANC data RTP packet
+     * for a frame (for progressive scan video) or the last ANC data RTP
+     * packet for a field (for interlaced video).
+     */
+    @Field(1) marker : number;
+    @Field(7) pt : number;
+    @Field(16) sequenceNumber : number;
+    @Field(32) timestamp : number;
+    @Field(32) ssrc : number;
+
+    /**
+     * The high-order bits of the extended 32-bit sequence number,
+     * in network byte order. This is the same as the Extended
+     * Sequence Number field in RFC 4175 [RFC4175].
+     */
+    @Field(16) extendedSequenceNumber : number;
+
+    /**
+     * Number of octets of the ANC data RTP payload, beginning with
+     * the "C" bit of the first ANC packet data header, as an
+     * unsigned integer in network byte order. Note that all
+     * word_align fields contribute to the calculation of the Length
+     * field.
+     */
+    @Field(16) length : number;
 }
