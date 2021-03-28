@@ -20,7 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "@astronautlabs/bitstream": "^0.0.27",
-    "@astronautlabs/st291": "0.0.10"
+    "@astronautlabs/st291": "^0.0.11"
   },
   "repository": {
     "url": "git@github.com:astronautlabs/rfc8331.git"
