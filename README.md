@@ -3,10 +3,13 @@
 
 ## Implementation of RFC 8331, RTP Payload for SMPTE ST 291-1 Ancillary Data
 
-> **Alpha Quality**  
-> This software is very new and unstable. Use with caution, and avoid use in 
-> production without careful consideration. Major API changes may be made 
-> frequently.
+
+> **[📜 IETF RFC 8331](https://tools.ietf.org/html/rfc8331)**  
+> RTP Payload for Society of Motion Picture and Television Engineers (SMPTE) ST 291-1 Ancillary Data
+
+> 📝 **Beta Quality**  
+> This library is new, with limited compatibility guarantees between 
+> releases (beta, semver 0.x.x).
 
 This library provides the ability to read and write packetized SMPTE ST 291 ancillary messages via RTP, as codified in 
 IETF RFC 8331, which builds on SMPTE ST 2038 ("Carriage of Ancillary Data Packets in an MPEG-2 Transport Stream"), using 
