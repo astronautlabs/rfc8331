@@ -19,8 +19,8 @@
   "author": "Astronaut Labs, LLC.",
   "license": "MIT",
   "dependencies": {
-    "@astronautlabs/bitstream": "^1.0.3",
-    "@astronautlabs/st291": "^1.0.1"
+    "@astronautlabs/bitstream": "^2.0.2",
+    "@astronautlabs/st291": "^2.0.0"
   },
   "repository": {
     "url": "git@github.com:astronautlabs/rfc8331.git"
